@@ -1,0 +1,12 @@
+[submodule "Configuration"]
+	path = Configuration
+	url = https://github.com/DeVaukz/xcconfigs.git
+[submodule "External/MachO-Kit"]
+	path = External/MachO-Kit
+	url = https://github.com/DeVaukz/MachO-Kit.git
+[submodule "External/WAYWindow"]
+	path = External/WAYWindow
+	url = https://github.com/weAreYeah/WAYWindow.git
+[submodule "External/WAYTheDarkSide"]
+	path = External/WAYTheDarkSide
+	url = https://github.com/weAreYeah/WAYTheDarkSide.git
