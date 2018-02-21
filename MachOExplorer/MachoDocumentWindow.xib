@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MachODocumentWindowController" customModule="MachOExplorer" customModuleProvider="target">
+            <connections>
+                <outlet property="addressModeSelector" destination="uJh-iV-5V2" id="VAl-9G-N7g"/>
+                <outlet property="displayModeSelector" destination="lsp-Es-Dle" id="M8m-Y6-Uvg"/>
+                <outlet property="displayModeSelectorItem" destination="9bd-zk-8Zj" id="ieB-8j-26J"/>
+                <outlet property="searchField" destination="u9A-ci-8kf" id="g4E-ef-uQu"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="uaD-ht-AZf"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="160" y="600" width="600" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="2757972D-4DD2-48E2-9CC7-1DC017E2BA4D" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="4iY-xU-uU8">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="6F774448-604E-4EA0-8A77-EF6E6C8118CC" label="Address Mode" paletteLabel="Address Mode" id="jYj-Pr-u9D">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="67" height="24"/>
+                        <size key="maxSize" width="104" height="25"/>
+                        <segmentedControl key="view" verticalHuggingPriority="750" id="uJh-iV-5V2">
+                            <rect key="frame" x="0.0" y="14" width="103" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="VhQ-Fa-8cH">
+                                <font key="font" metaFont="system"/>
+                                <segments>
+                                    <segment label="RAW" width="50"/>
+                                    <segment label="RVA" width="50" selected="YES" tag="1"/>
+                                </segments>
+                            </segmentedCell>
+                            <connections>
+                                <binding destination="-2" name="selectedIndex" keyPath="document.addressMode" id="QBm-Gw-AWQ"/>
+                            </connections>
+                        </segmentedControl>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="80AC468B-414C-4186-B836-7F88C17F5351" label="Display" paletteLabel="Display" id="9bd-zk-8Zj">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="40" height="24"/>
+                        <size key="maxSize" width="200" height="25"/>
+                        <segmentedControl key="view" verticalHuggingPriority="750" id="lsp-Es-Dle">
+                            <rect key="frame" x="3" y="14" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="hVZ-Ho-MBE">
+                                <font key="font" metaFont="system"/>
+                                <segments>
+                                    <segment/>
+                                    <segment selected="YES" tag="1"/>
+                                </segments>
+                            </segmentedCell>
+                            <connections>
+                                <action selector="displayModeChanged:" target="-2" id="qhh-CU-2Kh"/>
+                            </connections>
+                        </segmentedControl>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="CB4311C0-B023-4F53-99C8-847EFC486E03" label="Search" paletteLabel="Search" id="o3b-NY-3bX">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="96" height="22"/>
+                        <size key="maxSize" width="96" height="22"/>
+                        <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="u9A-ci-8kf">
+                            <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="Zl4-mN-buk">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </searchFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="document.searchString" id="K9l-mG-Del"/>
+                            </connections>
+                        </searchField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ddN-Je-LgT"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="x7n-Y9-y3W"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="jYj-Pr-u9D"/>
+                    <toolbarItem reference="x7n-Y9-y3W"/>
+                    <toolbarItem reference="9bd-zk-8Zj"/>
+                    <toolbarItem reference="x7n-Y9-y3W"/>
+                    <toolbarItem reference="o3b-NY-3bX"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <connections>
+                <outlet property="delegate" destination="-2" id="Jwv-RM-VAS"/>
+            </connections>
+            <point key="canvasLocation" x="-550" y="66"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="uxn-Du-FQT"/>
+    </objects>
+</document>
