@@ -15,6 +15,7 @@
 		D03CD1561E4FAEDC00D76CFE /* MachODocumentWindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CD1551E4FAEDC00D76CFE /* MachODocumentWindowContentViewController.swift */; };
 		D03CD1591E4FB12A00D76CFE /* MachODocumentOutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CD1571E4FB12A00D76CFE /* MachODocumentOutlineViewController.swift */; };
 		D03CD15A1E4FB12A00D76CFE /* MachODocumentOutlineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03CD1581E4FB12A00D76CFE /* MachODocumentOutlineViewController.xib */; };
+		D03EF6202043423400B8022C /* MKFixup+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF61F2043423400B8022C /* MKFixup+Model.swift */; };
 		D05AD7361C08EB7D00D832C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05AD7351C08EB7D00D832C7 /* Assets.xcassets */; };
 		D05AD7381C08EB8800D832C7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05AD7371C08EB8800D832C7 /* MainMenu.xib */; };
 		D05AD74F1C08F43800D832C7 /* MachOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D05AD7481C08EF0C00D832C7 /* MachOKit.framework */; };
@@ -104,6 +105,7 @@
 		D03CD1551E4FAEDC00D76CFE /* MachODocumentWindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachODocumentWindowContentViewController.swift; sourceTree = "<group>"; };
 		D03CD1571E4FB12A00D76CFE /* MachODocumentOutlineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachODocumentOutlineViewController.swift; sourceTree = "<group>"; };
 		D03CD1581E4FB12A00D76CFE /* MachODocumentOutlineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MachODocumentOutlineViewController.xib; sourceTree = "<group>"; };
+		D03EF61F2043423400B8022C /* MKFixup+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKFixup+Model.swift"; sourceTree = "<group>"; };
 		D05AD7071C08E56E00D832C7 /* MachOExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MachOExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05AD7231C08EAB300D832C7 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
 		D05AD7241C08EAB300D832C7 /* DynamicLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DynamicLibrary.xcconfig; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				D0631A452029083E00959BC6 /* MKSection+Model.swift */,
+				D03EF61F2043423400B8022C /* MKFixup+Model.swift */,
 				D09A1939202ECABB0053181B /* MKExportTrieBranch+Model.swift */,
 			);
 			path = MachO;
@@ -552,6 +555,7 @@
 				D062868D201EDF83009F8237 /* Model.swift in Sources */,
 				D0A826652028210700855EE6 /* FieldAdapter.swift in Sources */,
 				D0A826602028161F00855EE6 /* MKFatArch+Model.swift in Sources */,
+				D03EF6202043423400B8022C /* MKFixup+Model.swift in Sources */,
 				D03CD1561E4FAEDC00D76CFE /* MachODocumentWindowContentViewController.swift in Sources */,
 				D0B9F6FC1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift in Sources */,
 				D0A82640202669D200855EE6 /* DetailModel.swift in Sources */,
