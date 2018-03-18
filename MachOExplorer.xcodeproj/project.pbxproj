@@ -49,6 +49,7 @@
 		D0B1129A1E6380B400AE9132 /* WAYTheDarkSide.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B112991E6380B400AE9132 /* WAYTheDarkSide.m */; settings = {COMPILER_FLAGS = "-Wno-unused-parameter"; }; };
 		D0B9F6F11E597D9B00D0B35A /* MachODocumentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F6EF1E597D9B00D0B35A /* MachODocumentDetailsViewController.swift */; };
 		D0B9F6FC1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F6FB1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift */; };
+		D0C947FC205F218A0045E2D2 /* MKFunctionStarts+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C947FB205F218A0045E2D2 /* MKFunctionStarts+Model.swift */; };
 		D0C9E84720224A25003FE384 /* MKNode+Outline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E84620224A25003FE384 /* MKNode+Outline.swift */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,7 @@
 		D0B112991E6380B400AE9132 /* WAYTheDarkSide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAYTheDarkSide.m; sourceTree = "<group>"; };
 		D0B9F6EF1E597D9B00D0B35A /* MachODocumentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachODocumentDetailsViewController.swift; sourceTree = "<group>"; };
 		D0B9F6FB1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSValueTransformer+TakeFirst.swift"; sourceTree = "<group>"; };
+		D0C947FB205F218A0045E2D2 /* MKFunctionStarts+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKFunctionStarts+Model.swift"; sourceTree = "<group>"; };
 		D0C9E84620224A25003FE384 /* MKNode+Outline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKNode+Outline.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				D0631A452029083E00959BC6 /* MKSection+Model.swift */,
+				D0C947FB205F218A0045E2D2 /* MKFunctionStarts+Model.swift */,
 				D03EF61F2043423400B8022C /* MKFixup+Model.swift */,
 				D09A1939202ECABB0053181B /* MKExportTrieBranch+Model.swift */,
 			);
@@ -533,6 +536,7 @@
 			files = (
 				D08457C71E5D408600B07C49 /* MachOHexDetailViewController.swift in Sources */,
 				D0A8264F2027D68E00855EE6 /* MKNode+Adapter.swift in Sources */,
+				D0C947FC205F218A0045E2D2 /* MKFunctionStarts+Model.swift in Sources */,
 				D08457C41E5D381000B07C49 /* MachODetailViewController.swift in Sources */,
 				D0A826442026725000855EE6 /* MKBackedNode+Detail.swift in Sources */,
 				D0631A44202907A600959BC6 /* NSDictionary+Model.swift in Sources */,
