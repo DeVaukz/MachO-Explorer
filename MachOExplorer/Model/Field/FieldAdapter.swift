@@ -41,6 +41,14 @@ class FieldAdapter: NSObject
         return value.value as! NSObject?
     }
     
+    var typeAdapter: TypeAdapter? {
+        if let type = self.type {
+            return TypeAdapter.For(value: self.value, ofType: type, inNode: self.node)
+        } else {
+            return nil
+        }
+    }
+    
     var fieldIndex: UInt {
         let layout = self.node.layout
         var i: UInt = 0
@@ -67,23 +75,37 @@ extension FieldAdapter /* OutlineModel */
         guard self.field.options.contains(.displayAsChild) else { return [] }
         
         if field.options.contains(.mergeContainerContents) {
-            if let collectionType = self.type as? MKNodeFieldCollectionType {
-                if let elementType = collectionType.elementType {
-                    return value.outline_nodes.reduce([], { $0 + TypeAdapter(for: $1 as! NSObject, ofType: elementType).outline_nodes })
-                } else {
-                    return value.outline_nodes
-                }
+            if let collectionType = self.type as? MKNodeFieldCollectionType,
+               let elementType = collectionType.elementType {
+                return value.outline_nodes.reduce([], { $0 + TypeAdapter.For(value: $1 as! NSObject, ofType: elementType, inNode: self.node).outline_nodes })
             }
-            else if let _ = self.type as? MKNodeFieldNodeType {
+            else if self.type is MKNodeFieldContainerType {
                 return value.outline_nodes
+            }
+            else if self.type is MKNodeFieldPointerType,
+                 let pointer = value as? MKPointer<AnyObject> {
+                if let pointee = pointer.pointee.value(forKey: "value") {
+                    return (pointee as! NSObject).outline_nodes
+                } else {
+                    return []
+                }
             }
         }
         
-        if value is MKNode {
-            return value.outline_nodes
-        } else {
-            return [self]
+        // If the type is a pointer and there is no pointee, hide the field
+        if self.type is MKNodeFieldPointerType,
+           let pointer = value as? MKPointer<AnyObject>,
+            pointer.pointee.value == nil {
+            return []
         }
+        
+        // If the value is an MKNode then always merge the contents unless
+        // the field options contains ignoreContainerContents.
+        if value is MKNode && field.options.contains(.ignoreContainerContents) == false {
+            return value.outline_nodes
+        }
+        
+        return [self]
     }
 }
 
@@ -95,31 +117,49 @@ extension FieldAdapter /* DetailModel */
         if field.options.contains(.displayAsDetail) || field.options.contains(.displayAsChild) == false
         {
             if field.options.contains(.mergeContainerContents) {
-                if let collectionType = field.type as? MKNodeFieldCollectionType {
-                    if let elementType = collectionType.elementType {
-                        return value.detail_rows.reduce([], { $0 + TypeAdapter(for: $1 as! NSObject, ofType: elementType).detail_rows })
-                    } else {
-                        return value.detail_rows
-                    }
+                if let collectionType = field.type as? MKNodeFieldCollectionType,
+                   let elementType = collectionType.elementType {
+                    return value.detail_rows.reduce([], {
+                        if $1 is FieldAdapter || $1 is SubFieldAdapter {
+                            return $0 + [$1]
+                        } else {
+                            return $0 + TypeAdapter.For(value: $1 as! NSObject, ofType: elementType, inNode: self.node).detail_rows
+                        }
+                    })
                 }
-                else if let _ = field.type as? MKNodeFieldNodeType {
+                else if self.field.type is MKNodeFieldContainerType {
                     return value.detail_rows
                 }
+            }
+            else if field.options.contains(.ignoreContainerContents) == false,
+                    let typeAdapter = self.typeAdapter,
+                    typeAdapter.providesSubFields {
+                return [self] + typeAdapter.detail_rows.map({ detailRowModel -> SubFieldAdapter in
+                    return SubFieldAdapter(valueProvider: detailRowModel as! NSObject, inField: self)
+                })
             }
             
             return [self]
         }
         else if field.options.contains(.displayContainerContentsAsDetail)
         {
-            if let collectionType = field.type as? MKNodeFieldCollectionType {
-                if let elementType = collectionType.elementType {
-                    return value.detail_rows.reduce([], { $0 + TypeAdapter(for: $1 as! NSObject, ofType: elementType).detail_rows })
-                } else {
-                    return value.detail_rows
-                }
+            if let collectionType = field.type as? MKNodeFieldCollectionType,
+               let elementType = collectionType.elementType,
+               elementType is MKNodeFieldTypeNode == false {
+                return value.detail_rows.reduce([], { $0 + TypeAdapter.For(value: $1 as! NSObject, ofType: elementType, inNode: self.node).detail_rows })
             }
-            else if let _ = field.type as? MKNodeFieldNodeType {
+            else if self.field.type is MKNodeFieldContainerType {
                 return value.detail_rows
+            }
+        }
+        
+        // If the type is a pointer, then we always proxy the contents
+        if self.type is MKNodeFieldPointerType,
+           let pointer = value as? MKPointer<AnyObject> {
+            if let pointee = pointer.pointee.value(forKey: "value") {
+                return (pointee as! NSObject).detail_rows
+            } else {
+                //return []
             }
         }
         
@@ -142,10 +182,20 @@ extension FieldAdapter /* OutlineNodeModel */
         {
             if let collectionType = field.type as? MKNodeFieldCollectionType {
                 if let elementType = collectionType.elementType {
-                    return value.outline_nodes.reduce([], { $0 + TypeAdapter(for: $1 as! NSObject, ofType: elementType).outline_nodes })
+                    return value.outline_nodes.reduce([], { $0 + TypeAdapter.For(value: $1 as! NSObject, ofType: elementType, inNode: self.node).outline_nodes })
                 } else {
                     return value.outline_nodes
                 }
+            }
+        }
+        
+        // If the type is a pointer, then we always proxy the contents
+        if self.type is MKNodeFieldPointerType,
+           let pointer = value as? MKPointer<AnyObject> {
+            if let pointee = pointer.pointee.value(forKey: "value") {
+                return (pointee as! NSObject).outline_children
+            } else {
+                return []
             }
         }
         
@@ -154,17 +204,9 @@ extension FieldAdapter /* OutlineNodeModel */
     
     override var outline_title: String {
         if let description = self.field.description {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[F]" + description
-        #else
             return description
-        #endif
         } else {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[F]" + self.field.name
-        #else
             return self.field.name
-        #endif
         }
     }
 }
@@ -172,35 +214,28 @@ extension FieldAdapter /* OutlineNodeModel */
 extension FieldAdapter /* DetailRowModel */
 {
     override var detail_value: String? {
+        let fieldValue: String?
+        if self.field.options.contains(.ignoreContainerContents) == false,
+           let typeAdapter = self.typeAdapter,
+           typeAdapter.providesSubFields {
+            return alternateValue
+        }
+        
         if let formatter = self.field.valueFormatter,
            let formattedDescription = formatter.string(for: self.value) {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[F]" + formattedDescription
-        #else
-            return formattedDescription
-        #endif
+            fieldValue = formattedDescription
         } else {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[F]" + self.value.detail_value!
-        #else
-            return self.value.detail_value
-        #endif
+            fieldValue = self.value?.detail_value
+        }
+            return fieldValue
         }
     }
     
     override var detail_description: String? {
         if let fieldDescription = self.field.description {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[F]" + fieldDescription
-        #else
             return fieldDescription
-        #endif
         } else {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[F]" + self.field.name
-        #else
             return self.field.name
-        #endif
         }
     }
     

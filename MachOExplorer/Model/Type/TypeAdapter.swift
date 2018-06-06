@@ -31,27 +31,38 @@ class TypeAdapter: NSObject
 {
     let value: NSObject
     let type: MKNodeFieldType
+    let node: MKNode
     
-    init(for value: NSObject, ofType type: MKNodeFieldType) {
+    required init(value: NSObject, ofType type: MKNodeFieldType, inNode node: MKNode) {
         self.value = value
         self.type = type
+        self.node = node;
     }
+    
+    static func For(value: NSObject, ofType type: MKNodeFieldType, inNode node: MKNode) -> TypeAdapter {
+        if type is MKNodeFieldOptionSetType {
+            return OptionSetTypeAdapter(value: value, ofType: type, inNode: node)
+        }
+        else if type is MKNodeFieldBitfieldType {
+            return BitfieldTypeAdapter(value: value, ofType: type, inNode: node)
+        }
+        else if type is MKNodeFieldCollectionType {
+            return CollectionTypeAdapter(value: value, ofType: type, inNode: node)
+        }
+        else if type is MKNodeFieldContainerType {
+            return ContainerTypeAdapter(value: value, ofType: type, inNode: node)
+        }
+        else {
+            return TypeAdapter(value: value, ofType: type, inNode: node)
+        }
+    }
+    
+    var providesSubFields: Bool { return false }
 }
 
 extension TypeAdapter /* OutlineModel */
 {
     override var outline_nodes: [OutlineNodeModel] {
-        if let collectionType = self.type as? MKNodeFieldCollectionType {
-            if let elementType = collectionType.elementType {
-                return self.value.outline_nodes.reduce([], { $0 + TypeAdapter(for: $1 as! NSObject, ofType: elementType).outline_nodes })
-            } else {
-                return self.value.outline_nodes
-            }
-        }
-        if self.type is MKNodeFieldNodeType {
-            return self.value.outline_nodes
-        }
-        
         return [self]
     }
 }
@@ -73,17 +84,9 @@ extension TypeAdapter /* OutlineNodeModel */
     override var outline_title: String {
         if let formatter = self.type.formatter,
            let formattedDescription = formatter.string(for: self.value) {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[T]" + formattedDescription
-        #else
             return formattedDescription
-        #endif
         } else {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[T]" + self.value.outline_title
-        #else
             return self.value.outline_title
-        #endif
         }
     }
 }
@@ -91,17 +94,6 @@ extension TypeAdapter /* OutlineNodeModel */
 extension TypeAdapter /* DetailModel */
 {
     override var detail_rows: [DetailRowModel] {
-        if let collectionType = self.type as? MKNodeFieldCollectionType {
-            if let elementType = collectionType.elementType {
-                return self.value.detail_rows.reduce([], { $0 + TypeAdapter(for: $1 as! NSObject, ofType: elementType).detail_rows })
-            } else {
-                return self.value.detail_rows
-            }
-        }
-        if self.type is MKNodeFieldNodeType {
-            return self.value.detail_rows
-        }
-        
         return [self]
     }
 }
@@ -111,17 +103,9 @@ extension TypeAdapter /* DetailRowModel */
     override var detail_value: String? {
         if let formatter = self.type.formatter,
            let formattedDescription = formatter.string(for: self.value) {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[T]" + formattedDescription
-        #else
             return formattedDescription
-        #endif
         } else if let valueDescription = self.value.detail_value {
-        #if TRACE_DESCRIPTIONS_AND_VALUES
-            return "[T]" + valueDescription
-        #else
             return valueDescription
-        #endif
         } else {
             return nil
         }
