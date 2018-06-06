@@ -62,6 +62,16 @@ class FieldAdapter: NSObject
         return i
     }
     
+    var alternateFieldAdapter: FieldAdapter? {
+        if let alternateFieldName = self.field.alternateFieldName {
+            if let field = self.node.layout.field(withName: alternateFieldName, searchAllFields: true) {
+                return self.node.adapter(forField: field)
+            }
+        }
+        
+        return nil
+    }
+    
     init(field: MKNodeField, ofNode node: MKNode) {
         self.node = node
         self.field = field
@@ -71,8 +81,9 @@ class FieldAdapter: NSObject
 extension FieldAdapter /* OutlineModel */
 {
     override var outline_nodes: [OutlineNodeModel] {
-        guard let value = self.value else { return [] }
+        guard self.field.options.contains(.hidden) == false else { return [] }
         guard self.field.options.contains(.displayAsChild) else { return [] }
+        guard let value = self.value else { return [] }
         
         if field.options.contains(.mergeContainerContents) {
             if let collectionType = self.type as? MKNodeFieldCollectionType,
@@ -112,7 +123,8 @@ extension FieldAdapter /* OutlineModel */
 extension FieldAdapter /* DetailModel */
 {
     override var detail_rows: [DetailRowModel] {
-        guard let _ = self.value else { return [] }
+        guard self.field.options.contains(.hidden) == false else { return [] }
+        guard let value = self.value else { return [] }
         
         if field.options.contains(.displayAsDetail) || field.options.contains(.displayAsChild) == false
         {
@@ -215,6 +227,13 @@ extension FieldAdapter /* DetailRowModel */
 {
     override var detail_value: String? {
         let fieldValue: String?
+        let alternateValue: String? = self.alternateFieldAdapter?.detail_value
+        
+        if let alternateValue = alternateValue,
+           self.field.options.contains(.substituteAlternateFieldValue) {
+            return alternateValue
+        }
+        
         if self.field.options.contains(.ignoreContainerContents) == false,
            let typeAdapter = self.typeAdapter,
            typeAdapter.providesSubFields {
@@ -227,6 +246,12 @@ extension FieldAdapter /* DetailRowModel */
         } else {
             fieldValue = self.value?.detail_value
         }
+        
+        if let alternateValue = alternateValue,
+           let fieldValue = fieldValue,
+           self.field.options.contains(.hideAlternateField) == false {
+            return fieldValue + " (" + alternateValue + ")"
+        } else {
             return fieldValue
         }
     }
@@ -240,6 +265,8 @@ extension FieldAdapter /* DetailRowModel */
     }
     
     override var detail_data: Data? {
+        guard self.field.options.contains(.hideData) == false else { return nil }
+        
         if let dataRecipe = self.field.dataRecipe,
            let node = self.node as? MKBackedNode {
             return dataRecipe.data(for: self.field, of: node)
@@ -249,6 +276,8 @@ extension FieldAdapter /* DetailRowModel */
     }
     
     override func detail_address(mode addressMode: MKNodeAddressType) -> NSNumber? {
+        guard self.field.options.contains(.hideAddress) == false else { return nil }
+        
         if let dataRecipe = self.field.dataRecipe,
            let node = self.node as? MKBackedNode {
             var addr: NSNumber?
