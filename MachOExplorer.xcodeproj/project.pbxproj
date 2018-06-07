@@ -19,7 +19,9 @@
 		D03EF616204229D400B8022C /* ContainerTypeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF615204229D400B8022C /* ContainerTypeAdapter.swift */; };
 		D03EF61820422A5900B8022C /* OptionSetTypeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF61720422A5900B8022C /* OptionSetTypeAdapter.swift */; };
 		D03EF61A20427F9B00B8022C /* SubFieldAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF61920427F9B00B8022C /* SubFieldAdapter.swift */; };
+		D03EF61C20428D6600B8022C /* MKExport+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF61B20428D6600B8022C /* MKExport+Model.swift */; };
 		D03EF6202043423400B8022C /* MKFixup+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF61F2043423400B8022C /* MKFixup+Model.swift */; };
+		D057DB7920C372D1006CB7D3 /* MKPointerNode+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057DB7820C372D1006CB7D3 /* MKPointerNode+Model.swift */; };
 		D05AD7361C08EB7D00D832C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05AD7351C08EB7D00D832C7 /* Assets.xcassets */; };
 		D05AD7381C08EB8800D832C7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05AD7371C08EB8800D832C7 /* MainMenu.xib */; };
 		D05AD74F1C08F43800D832C7 /* MachOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D05AD7481C08EF0C00D832C7 /* MachOKit.framework */; };
@@ -115,7 +117,9 @@
 		D03EF615204229D400B8022C /* ContainerTypeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTypeAdapter.swift; sourceTree = "<group>"; };
 		D03EF61720422A5900B8022C /* OptionSetTypeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSetTypeAdapter.swift; sourceTree = "<group>"; };
 		D03EF61920427F9B00B8022C /* SubFieldAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubFieldAdapter.swift; sourceTree = "<group>"; };
+		D03EF61B20428D6600B8022C /* MKExport+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKExport+Model.swift"; sourceTree = "<group>"; };
 		D03EF61F2043423400B8022C /* MKFixup+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKFixup+Model.swift"; sourceTree = "<group>"; };
+		D057DB7820C372D1006CB7D3 /* MKPointerNode+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointerNode+Model.swift"; sourceTree = "<group>"; };
 		D05AD7071C08E56E00D832C7 /* MachOExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MachOExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05AD7231C08EAB300D832C7 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
 		D05AD7241C08EAB300D832C7 /* DynamicLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DynamicLibrary.xcconfig; sourceTree = "<group>"; };
@@ -342,9 +346,11 @@
 		D0631A40202905E300959BC6 /* MachO */ = {
 			isa = PBXGroup;
 			children = (
+				D057DB7820C372D1006CB7D3 /* MKPointerNode+Model.swift */,
 				D0631A452029083E00959BC6 /* MKSection+Model.swift */,
 				D0C947FB205F218A0045E2D2 /* MKFunctionStarts+Model.swift */,
 				D03EF61F2043423400B8022C /* MKFixup+Model.swift */,
+				D03EF61B20428D6600B8022C /* MKExport+Model.swift */,
 				D09A1939202ECABB0053181B /* MKExportTrieBranch+Model.swift */,
 			);
 			path = MachO;
@@ -554,6 +560,7 @@
 				D0A8264F2027D68E00855EE6 /* MKNode+Adapter.swift in Sources */,
 				D0C947FC205F218A0045E2D2 /* MKFunctionStarts+Model.swift in Sources */,
 				D08457C41E5D381000B07C49 /* MachODetailViewController.swift in Sources */,
+				D03EF61C20428D6600B8022C /* MKExport+Model.swift in Sources */,
 				D0A826442026725000855EE6 /* MKBackedNode+Detail.swift in Sources */,
 				D0631A44202907A600959BC6 /* NSDictionary+Model.swift in Sources */,
 				D0B9F6F11E597D9B00D0B35A /* MachODocumentDetailsViewController.swift in Sources */,
@@ -580,6 +587,7 @@
 				D03CD1561E4FAEDC00D76CFE /* MachODocumentWindowContentViewController.swift in Sources */,
 				D0B9F6FC1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift in Sources */,
 				D03EF6142042289000B8022C /* CollectionTypeAdapter.swift in Sources */,
+				D057DB7920C372D1006CB7D3 /* MKPointerNode+Model.swift in Sources */,
 				D0613467204527C000173476 /* BitFieldTypeAdapter.swift in Sources */,
 				D0A82640202669D200855EE6 /* DetailModel.swift in Sources */,
 				D06D59A4201445FB00A99173 /* NS+Initialize.m in Sources */,
