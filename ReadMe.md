@@ -3,6 +3,8 @@ Mach-O Explorer
 
 Mach-O Explorer is a graphical Mach-O viewer for macOS.  It aims to provide an interface and feature set that are similar to the venerable [MachOView](http://sourceforge.net/projects/machoview/) application.  Parsing is handled by Mach-O Kit.  Mach-O Explorer leverages Mach-O Kit's rich description system to present the parsed data using very little code.
 
+![Screenshot](https://raw.githubusercontent.com/DeVaukz/MachO-Explorer/master/.github/hero.png)
+
 Mach-O Explorer should deploy back to OS X 10.11 (and possibly further) but is *currently* only being actively tested on macOS 10.13.
 
 ### Limitations
