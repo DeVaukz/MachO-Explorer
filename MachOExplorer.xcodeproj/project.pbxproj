@@ -136,11 +136,11 @@
 		D05AD72A1C08EAD500D832C7 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D05AD72B1C08EAD500D832C7 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 		D05AD72C1C08EADE00D832C7 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
-		D05AD72E1C08EAFB00D832C7 /* Mac-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Application.xcconfig"; sourceTree = "<group>"; };
-		D05AD72F1C08EAFB00D832C7 /* Mac-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Base.xcconfig"; sourceTree = "<group>"; };
-		D05AD7301C08EAFB00D832C7 /* Mac-DynamicLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-DynamicLibrary.xcconfig"; sourceTree = "<group>"; };
-		D05AD7311C08EAFB00D832C7 /* Mac-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Framework.xcconfig"; sourceTree = "<group>"; };
-		D05AD7321C08EAFB00D832C7 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		D05AD72E1C08EAFB00D832C7 /* macOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS-Application.xcconfig"; sourceTree = "<group>"; };
+		D05AD72F1C08EAFB00D832C7 /* macOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS-Base.xcconfig"; sourceTree = "<group>"; };
+		D05AD7301C08EAFB00D832C7 /* macOS-DynamicLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS-DynamicLibrary.xcconfig"; sourceTree = "<group>"; };
+		D05AD7311C08EAFB00D832C7 /* macOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS-Framework.xcconfig"; sourceTree = "<group>"; };
+		D05AD7321C08EAFB00D832C7 /* macOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		D05AD7341C08EB7500D832C7 /* MachOExplorer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MachOExplorer-Info.plist"; sourceTree = "<group>"; };
 		D05AD7351C08EB7D00D832C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D05AD7371C08EB8800D832C7 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				D05AD7211C08EA9400D832C7 /* Base */,
-				D05AD72D1C08EAE700D832C7 /* OS X */,
+				D05AD72D1C08EAE700D832C7 /* macOS */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -318,17 +318,16 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
-		D05AD72D1C08EAE700D832C7 /* OS X */ = {
+		D05AD72D1C08EAE700D832C7 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				D05AD72F1C08EAFB00D832C7 /* Mac-Base.xcconfig */,
-				D05AD72E1C08EAFB00D832C7 /* Mac-Application.xcconfig */,
-				D05AD7301C08EAFB00D832C7 /* Mac-DynamicLibrary.xcconfig */,
-				D05AD7311C08EAFB00D832C7 /* Mac-Framework.xcconfig */,
-				D05AD7321C08EAFB00D832C7 /* Mac-StaticLibrary.xcconfig */,
+				D05AD72F1C08EAFB00D832C7 /* macOS-Base.xcconfig */,
+				D05AD72E1C08EAFB00D832C7 /* macOS-Application.xcconfig */,
+				D05AD7301C08EAFB00D832C7 /* macOS-DynamicLibrary.xcconfig */,
+				D05AD7311C08EAFB00D832C7 /* macOS-Framework.xcconfig */,
+				D05AD7321C08EAFB00D832C7 /* macOS-StaticLibrary.xcconfig */,
 			);
-			name = "OS X";
-			path = "Mac OS X";
+			path = macOS;
 			sourceTree = "<group>";
 		};
 		D05AD7331C08EB2000D832C7 /* Resources */ = {
@@ -654,7 +653,7 @@
 		};
 		D05AD7191C08E56E00D832C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D05AD72E1C08EAFB00D832C7 /* Mac-Application.xcconfig */;
+			baseConfigurationReference = D05AD72E1C08EAFB00D832C7 /* macOS-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -667,7 +666,7 @@
 		};
 		D05AD71A1C08E56E00D832C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D05AD72E1C08EAFB00D832C7 /* Mac-Application.xcconfig */;
+			baseConfigurationReference = D05AD72E1C08EAFB00D832C7 /* macOS-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
