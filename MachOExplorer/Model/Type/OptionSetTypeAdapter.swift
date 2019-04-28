@@ -62,7 +62,9 @@ extension OptionSetTypeAdapter /* DetailModel, DetailRowModel */
         guard let value = self.value as? NSNumber else { return [] }
         
         let v: UInt64 = value.mk_UnsignedValue(nil)
-        guard v != 0 else { return super.detail_rows }
+        guard v != 0 || (self.type as! MKNodeFieldOptionSetType).options[0] != nil else {
+            return []
+        }
         
         var rows = Array<DetailRowModel>()
         
@@ -75,6 +77,10 @@ extension OptionSetTypeAdapter /* DetailModel, DetailRowModel */
             
             if (v & m) == m {
                 rows.append(OptionDetailRowAdapter(mask, name))
+            } else if (self.type as! MKNodeFieldOptionSetType).optionSetTraits.contains(.partialMatchingAllowed) {
+                if (v & m) != 0 {
+                    rows.append(OptionDetailRowAdapter(mask, name))
+                }
             }
         }
         

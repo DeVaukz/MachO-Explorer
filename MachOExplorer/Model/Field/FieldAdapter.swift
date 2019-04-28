@@ -249,7 +249,7 @@ extension FieldAdapter /* DetailRowModel */
         
         if let alternateValue = alternateValue,
            let fieldValue = fieldValue,
-           self.field.options.contains(.hideAlternateField) == false {
+           self.field.options.contains(.hideAlternateFieldValue) == false {
             return fieldValue + " (" + alternateValue + ")"
         } else {
             return fieldValue
@@ -257,10 +257,27 @@ extension FieldAdapter /* DetailRowModel */
     }
     
     override var detail_description: String? {
-        if let fieldDescription = self.field.description {
-            return fieldDescription
+        let fieldDescription: String?
+        let alternateDescription: String? = self.alternateFieldAdapter?.detail_description
+        
+        if let alternateDescription = alternateDescription,
+           self.field.options.contains(.substituteAlternateFieldDescription) {
+            return alternateDescription
+        }
+        
+        
+        if let fd = self.field.description {
+            fieldDescription = fd
         } else {
-            return self.field.name
+            fieldDescription = self.field.name
+        }
+        
+        if let alternateDescription = alternateDescription,
+           let fieldDescription = fieldDescription,
+           self.field.options.contains(.showAlternateFieldDescription) {
+            return fieldDescription + " (" + alternateDescription + ")"
+        } else {
+            return fieldDescription
         }
     }
     
