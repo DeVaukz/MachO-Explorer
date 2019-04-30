@@ -5,5 +5,4 @@
 #import "Utility.h"
 #import "NS+Initialize.h"
 
-#import "WAYTheDarkSide.h"
 #import "WAYWindow.h"

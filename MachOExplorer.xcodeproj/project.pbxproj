@@ -56,7 +56,6 @@
 		D0A826622028188E00855EE6 /* TypeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A826612028188E00855EE6 /* TypeAdapter.swift */; };
 		D0A826652028210700855EE6 /* FieldAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A826642028210700855EE6 /* FieldAdapter.swift */; };
 		D0B112961E637FD800AE9132 /* WAYWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B112951E637FD800AE9132 /* WAYWindow.m */; settings = {COMPILER_FLAGS = "-Wno-unused-parameter -Wno-mismatched-parameter-types -Wno-sign-conversion -Wno-conversion -Wno-deprecated-declarations -Wno-implicit-retain-self"; }; };
-		D0B1129A1E6380B400AE9132 /* WAYTheDarkSide.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B112991E6380B400AE9132 /* WAYTheDarkSide.m */; settings = {COMPILER_FLAGS = "-Wno-unused-parameter"; }; };
 		D0B9F6F11E597D9B00D0B35A /* MachODocumentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F6EF1E597D9B00D0B35A /* MachODocumentDetailsViewController.swift */; };
 		D0B9F6FC1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F6FB1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift */; };
 		D0C947FC205F218A0045E2D2 /* MKFunctionStarts+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C947FB205F218A0045E2D2 /* MKFunctionStarts+Model.swift */; };
@@ -177,8 +176,6 @@
 		D0A826642028210700855EE6 /* FieldAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldAdapter.swift; sourceTree = "<group>"; };
 		D0B112941E637FD800AE9132 /* WAYWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAYWindow.h; sourceTree = "<group>"; };
 		D0B112951E637FD800AE9132 /* WAYWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAYWindow.m; sourceTree = "<group>"; };
-		D0B112981E6380B400AE9132 /* WAYTheDarkSide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAYTheDarkSide.h; sourceTree = "<group>"; };
-		D0B112991E6380B400AE9132 /* WAYTheDarkSide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAYTheDarkSide.m; sourceTree = "<group>"; };
 		D0B9F6EF1E597D9B00D0B35A /* MachODocumentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachODocumentDetailsViewController.swift; sourceTree = "<group>"; };
 		D0B9F6FB1E5AB4B500D0B35A /* NSValueTransformer+TakeFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSValueTransformer+TakeFirst.swift"; sourceTree = "<group>"; };
 		D0C947FB205F218A0045E2D2 /* MKFunctionStarts+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKFunctionStarts+Model.swift"; sourceTree = "<group>"; };
@@ -270,7 +267,6 @@
 		D05AD71E1C08EA5200D832C7 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				D0B112971E63809300AE9132 /* WAYTheDarkSide */,
 				D0B112911E637FC100AE9132 /* WAYWindow */,
 				D05AD73F1C08EF0B00D832C7 /* MachOKit.xcodeproj */,
 			);
@@ -443,16 +439,6 @@
 			path = WAYWindow/WAYWindow;
 			sourceTree = "<group>";
 		};
-		D0B112971E63809300AE9132 /* WAYTheDarkSide */ = {
-			isa = PBXGroup;
-			children = (
-				D0B112981E6380B400AE9132 /* WAYTheDarkSide.h */,
-				D0B112991E6380B400AE9132 /* WAYTheDarkSide.m */,
-			);
-			name = WAYTheDarkSide;
-			path = WAYTheDarkSide/WAYTheDarkSide;
-			sourceTree = "<group>";
-		};
 		D0B9F6FA1E5AB48000D0B35A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,7 +568,6 @@
 				D0B9F6F11E597D9B00D0B35A /* MachODocumentDetailsViewController.swift in Sources */,
 				D0C9E84720224A25003FE384 /* MKNode+Outline.swift in Sources */,
 				D03CD1541E4F923A00D76CFE /* MachODocument.swift in Sources */,
-				D0B1129A1E6380B400AE9132 /* WAYTheDarkSide.m in Sources */,
 				D08457CC1E5D48F900B07C49 /* Utility.m in Sources */,
 				D03AFA1F1E5F699B00C60363 /* MachODetailsViewController.swift in Sources */,
 				D03CD1521E4F91FB00D76CFE /* MachODocumentWindowController.swift in Sources */,

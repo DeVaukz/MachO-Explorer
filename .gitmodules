@@ -7,6 +7,3 @@
 [submodule "External/WAYWindow"]
 	path = External/WAYWindow
 	url = https://github.com/weAreYeah/WAYWindow.git
-[submodule "External/WAYTheDarkSide"]
-	path = External/WAYTheDarkSide
-	url = https://github.com/weAreYeah/WAYTheDarkSide.git

@@ -40,14 +40,6 @@ class MachODocumentWindowController: NSWindowController
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        WAYTheDarkSide.welcome(self, with: { 
-            self.window!.appearance = NSAppearance(named: .vibrantDark)
-        }, immediately: true)
-        
-        WAYTheDarkSide.outcastObject(self, with: { 
-            self.window!.appearance = NSAppearance(named: .vibrantLight)
-        }, immediately: true)
-        
         let splitViewController = MachODocumentWindowContentViewController()
         
         // Load the outline view controller (master)
