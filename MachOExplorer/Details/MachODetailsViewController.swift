@@ -168,22 +168,18 @@ extension MachODetailsViewController: NSTableViewDelegate
                 if let tableView = self.superview as? NSTableView {
                     tableView.gridColor.set()
                 } else {
-                    NSColor.gray.set()
+                    NSColor.separatorColor.set()
+                }
+                
+                // Hack - tableView.gridColor does not look correct in dark mode
+                if (self.effectiveAppearance.name == NSAppearance.Name.darkAqua) {
+                    NSColor.lightGray.set()
                 }
                 
                 NSBezierPath.strokeLine(
-                    from: NSPoint(x: self.bounds.origin.x, y: self.bounds.origin.y/* + self.bounds.size.height - 0.5*/),
-                    to: NSPoint(x: self.bounds.origin.x + self.bounds.size.width, y: self.bounds.origin.y/* + self.bounds.size.height - 0.5*/)
+                    from: NSPoint(x: self.bounds.origin.x, y: self.bounds.origin.y),
+                    to: NSPoint(x: self.bounds.origin.x + self.bounds.size.width, y: self.bounds.origin.y)
                 )
-            }
-        }
-        
-        override func drawSelection(in dirtyRect: NSRect) {
-            super.drawSelection(in: dirtyRect)
-            
-            if self.interiorBackgroundStyle == .dark && self.isSelected && self.isEmphasized == false {
-                NSColor(calibratedWhite: 78.0/255.0, alpha: 1.0).set()
-                NSBezierPath.fill(self.bounds)
             }
         }
     }
