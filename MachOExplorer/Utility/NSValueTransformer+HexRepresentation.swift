@@ -38,7 +38,7 @@ class HexRepresentationValueTransformer: ValueTransformer
     }
     
     override func transformedValue(_ value: Any?) -> Any? {
-        guard var data = value as? Data else { return nil }
+        guard let data = value as? Data else { return nil }
         
         let hexCodes: [UInt8] = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70]
         var characters = Array<UInt8>(repeating: 0, count: data.count * 2)

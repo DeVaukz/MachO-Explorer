@@ -480,7 +480,7 @@
 		D05AD6FF1C08E56E00D832C7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = DeVaukz;
 				TargetAttributes = {
 					D05AD7061C08E56E00D832C7 = {
@@ -490,7 +490,7 @@
 			};
 			buildConfigurationList = D05AD7021C08E56E00D832C7 /* Build configuration list for PBXProject "MachOExplorer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -620,9 +620,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D05AD7281C08EAD500D832C7 /* Debug.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -630,9 +630,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D05AD72A1C08EAD500D832C7 /* Release.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -641,7 +641,7 @@
 			baseConfigurationReference = D05AD72E1C08EAFB00D832C7 /* macOS-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "Resources/MachOExplorer-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = net.devaukz.macho.explorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -654,7 +654,7 @@
 			baseConfigurationReference = D05AD72E1C08EAFB00D832C7 /* macOS-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "Resources/MachOExplorer-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = net.devaukz.macho.explorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";

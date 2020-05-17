@@ -5,7 +5,7 @@ Mach-O Explorer is a graphical Mach-O viewer for macOS.  It aims to provide an i
 
 ![Screenshot](https://raw.githubusercontent.com/DeVaukz/MachO-Explorer/master/.github/hero.png)
 
-Mach-O Explorer should deploy back to OS X 10.11 (and possibly further) but is *currently* only being actively tested on macOS 10.13.
+Mach-O Explorer should deploy back to OS X 10.11 (and possibly further) but is *currently* only being actively tested on macOS 10.14.
 
 ### Limitations
 
@@ -17,7 +17,7 @@ Mach-O Explorer should deploy back to OS X 10.11 (and possibly further) but is *
 
 ### Requirements
 
-* Xcode 9.0 or later
+* Xcode 11.0 or later to build
 
 ### Compiling
 
