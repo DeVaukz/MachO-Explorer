@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="850" height="200" src="https://raw.githubusercontent.com/DeVaukz/MachO-Explorer/master/.github/banner.png">
+    <img width="850" height="171" src="https://raw.githubusercontent.com/DeVaukz/MachO-Explorer/master/.github/banner.png">
 </p>
 
 Mach-O Explorer is a graphical Mach-O viewer for macOS.  It aims to provide an interface and feature set that are similar to the venerable [MachOView](http://sourceforge.net/projects/machoview/) application.  Parsing is handled by Mach-O Kit.  Mach-O Explorer leverages Mach-O Kit's rich description system to present the parsed data using very little code.
