@@ -37,6 +37,22 @@ extension NSArray /* OutlineModel */
 extension NSArray /* DetailModel */
 {
     override var detail_rows: [DetailRowModel] {
-        return (self as! [NSObject]).reduce([], { $0 + $1.detail_rows })
+        if self.count < 1 {
+            return [];
+        }
+        
+        var detailRowModels = Array<DetailRowModel>()
+        
+        // Optimization - Ask the first item for its detail_rows, assume that
+        // the detail_rows of every item will contain the same number of
+        // DetailRowModel objects.
+        let reserveCapacity = self.count * (self[0] as! NSObject).detail_rows.count;
+        detailRowModels.reserveCapacity(reserveCapacity);
+        
+        for item in self {
+            detailRowModels += (item as! NSObject).detail_rows;
+        }
+        
+        return detailRowModels;
     }
 }

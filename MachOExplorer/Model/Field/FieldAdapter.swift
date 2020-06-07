@@ -131,13 +131,19 @@ extension FieldAdapter /* DetailModel */
             if field.options.contains(.mergeContainerContents) {
                 if let collectionType = field.type as? MKNodeFieldCollectionType,
                    let elementType = collectionType.elementType {
-                    return value.detail_rows.reduce([], {
-                        if $1 is FieldAdapter || $1 is SubFieldAdapter {
-                            return $0 + [$1]
+                    let valueDetailRowModels = value.detail_rows
+                    
+                    var detailRowModels = Array<DetailRowModel>()
+                    detailRowModels.reserveCapacity(valueDetailRowModels.count)
+                    for item in valueDetailRowModels {
+                        if item is FieldAdapter || item is SubFieldAdapter {
+                            detailRowModels.append(item)
                         } else {
-                            return $0 + TypeAdapter.For(value: $1 as! NSObject, ofType: elementType, inNode: self.node).detail_rows
+                            detailRowModels += TypeAdapter.For(value: item as! NSObject, ofType: elementType, inNode: self.node).detail_rows
                         }
-                    })
+                    }
+                    
+                    return detailRowModels
                 }
                 else if self.field.type is MKNodeFieldContainerType {
                     return value.detail_rows
